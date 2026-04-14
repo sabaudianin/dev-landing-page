@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Rafał Bobko - Fullstack Developer",
     description:
       "React / Next.js / C#.NET - available for projects and B2B.",
-    images: ["/og-image.png"],
+    images: ["/og.jpg"],
   },
   robots: {
     index: true,
