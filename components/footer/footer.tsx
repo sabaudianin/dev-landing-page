@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { GithubIcon } from "../githubIcon/githubIcon";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -58,7 +59,7 @@ export default function Footer() {
                                     rel="noopener noreferrer"
                                     className="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-1"
                                 >
-                                    GitHub <span className="w-3 h-3" />
+                                    GitHub <GithubIcon className="w-3 h-3" />
                                 </a>
                             </nav>
                         </div>
