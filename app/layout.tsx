@@ -1,53 +1,65 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const syne = Syne({
+  subsets: ["latin"],
+  variable: "--font-syne",
+  display: "swap",
+});
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rafalbobko.dev";
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm",
+  display: "swap",
+});
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://rafbob.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Rafał Bobko - Fullstack Developer (Next.js / React / .NET)",
-    template: "%s | Rafał Bobko",
+    default: "Strony internetowe dla firm | Rafał Bobko - od 800 zł, 5 dni",
+    template: "%s | RafBob.dev",
   },
   description:
-    "Fullstack developer specializing in React, Next.js and C#/.NET. Available for B2B projects and freelance work. Based in Poland, working remotely worldwide.",
+    "Tworzę strony internetowe, landing page i wizytówki firmowe dla polskich firm. Szybka realizacja 3-7 dni, uczciwe ceny od 800 zł. Pełne SEO w cenie. Zadzwoń lub napisz na WhatsApp.",
   keywords: [
-    "fullstack developer",
-    "Next.js developer",
-    "React developer",
-    "freelance developer Poland",
-    "hire developer",
-    "web development",
-    "C# .NET developer",
+    "strony internetowe dla firm",
+    "landing page cena",
+    "wizytówka firmowa strona www",
+    "tworzenie stron internetowych Polska",
+    "tanie strony internetowe",
+    "strona internetowa dla małej firmy",
+    "projektowanie stron www",
+    "Next.js developer Polska",
+    "strona firmowa SEO",
+    "webdev freelancer Polska",
   ],
   authors: [{ name: "Rafał Bobko", url: siteUrl }],
   creator: "Rafał Bobko",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "pl_PL",
     url: siteUrl,
-    siteName: "Rafał Bobko",
-    title: "Rafał Bobko - Fullstack Developer",
+    siteName: "RafBob.dev",
+    title: "Strony internetowe dla firm | od 800 zł · 5 dni · Pełne SEO",
     description:
-      "Hire a fullstack developer with strong React/Next.js frontend and growing .NET backend skills.",
+      "Tworzę strony www, landing page i wizytówki dla polskich firm. Szybko, tanio, z pełnym SEO.",
     images: [
       {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: "Rafał Bobko - Fullstack Developer",
+        alt: "RafBob.dev — Strony internetowe dla firm",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rafał Bobko - Fullstack Developer",
-    description:
-      "React / Next.js / C#.NET - available for projects and B2B.",
-    images: ["/og.jpg"],
+    title: "Strony internetowe dla firm | RafBob.dev",
+    description: "Od 600 zł · 5 dni · Pełne SEO w cenie. Napisz na WhatsApp.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -63,53 +75,72 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
   },
+  alternates: {
+    canonical: siteUrl,
+  },
 };
 
-// JSON-LD 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Rafał Bobko",
-  url: siteUrl,
-  jobTitle: "Fullstack Developer",
+  "@type": "LocalBusiness",
+  "@id": siteUrl,
+  name: "RafBob.dev - Rafał Bobko",
   description:
-    "Fullstack developer specializing in React, Next.js, TypeScript and C#/.NET",
-  email: "rafbobbob@gmail.com",
+    "Tworzenie stron internetowych, landing page i wizytówek firmowych dla polskich firm.",
+  url: siteUrl,
   telephone: "+48793386445",
+  email: "rafbobbob@gmail.com",
   address: {
     "@type": "PostalAddress",
     addressCountry: "PL",
+  },
+  priceRange: "800-5000 PLN",
+  currenciesAccepted: "PLN",
+  paymentAccepted: "Przelew, faktura VAT",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
   },
   sameAs: [
     "https://github.com/sabaudianin",
     "https://portfoliodev-hazel.vercel.app",
   ],
-  knowsAbout: [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Tailwind CSS",
-    "Node.js",
-    "C#",
-    ".NET",
-    "Docker",
-  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Usługi tworzenia stron internetowych",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        name: "Landing page",
+        description: "Profesjonalna strona sprzedażowa jednostronna",
+        price: "800",
+        priceCurrency: "PLN",
+        availability: "https://schema.org/InStock",
+      },
+      {
+        "@type": "Offer",
+        name: "Wizytówka firmowa",
+        description: "Wielostronicowa strona firmowa z pełnym SEO",
+        price: "1800",
+        priceCurrency: "PLN",
+        availability: "https://schema.org/InStock",
+      },
+    ],
+  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="pl" className={`${syne.variable} ${dmSans.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-background text-foreground antialiased">{children}</body>
+      <body className="font-dm antialiased">{children}</body>
     </html>
   );
 }
