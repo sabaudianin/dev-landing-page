@@ -1,4 +1,5 @@
 import CTA from "@/components/cta/cta";
+import FAQ from "@/components/faq/faq";
 import Footer from "@/components/footer/footer";
 import Hero from "@/components/hero/hero";
 import Nav from "@/components/nav/nav";
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Services />
       <WhyMe />
+      <FAQ />
       <CTA />
       <Footer />
 
