@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
-import { motion, Variants } from "framer-motion";
+
+import { motion } from "framer-motion";
 import { Monitor, Home, Code2, Check, ArrowRight, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { containerVariants, cardVariants } from "@/lib/variants/variants";
 
 const services = [
     {
@@ -38,22 +39,6 @@ const services = [
     },
 ];
 
-const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.2 },
-    },
-};
-
-const cardVariants: Variants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1,
-        transition: { type: "spring", stiffness: 100, damping: 12 },
-    },
-};
 
 export default function Services() {
     return (
@@ -104,7 +89,7 @@ export default function Services() {
                     viewport={{ once: true }}
                     className="grid grid-cols-1 md:grid-cols-3 gap-6"
                 >
-                    {services.map((s, index) => (
+                    {services.map((s) => (
                         <motion.div
                             key={s.title}
                             variants={cardVariants}

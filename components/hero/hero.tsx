@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { MessageCircle, Phone, ArrowDown, CheckCircle2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Variants } from "framer-motion";
+import { itemVariants, containerVariants } from "@/lib/variants/variants";
 
 const WA_LINK = "https://wa.me/48793386445?text=Hej%20Rafał%2C%20chciałbym%20zlecić%20stronę%20internetową.";
 const TYPED_WORDS = ["firmowa", "sprzedażowa", "wizytówka", "landing page"];
@@ -50,30 +50,7 @@ export default function Hero() {
         return () => clearTimeout(timeout);
     }, []);
 
-    // Warianty animacji dla Framer Motion
-    const containerVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.3,
-            },
-        },
-    };
 
-    const itemVariants: Variants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-            },
-        },
-    };
 
     return (
         <section

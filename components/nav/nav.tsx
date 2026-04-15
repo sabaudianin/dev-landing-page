@@ -35,7 +35,7 @@ export default function Nav() {
                 }`}
         >
             <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-                {/* Logo */}
+
                 <Link href="/" className="group flex items-center gap-1 font-bold text-xl text-white tracking-tighter">
                     <span className="bg-gradient-to-r from-purple-400 to-violet-500 bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
                         RafBob
@@ -56,7 +56,7 @@ export default function Nav() {
                     ))}
                 </nav>
 
-                {/* CTA Section */}
+
                 <div className="flex items-center gap-3">
                     <Button
                         asChild
