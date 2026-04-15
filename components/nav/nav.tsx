@@ -30,8 +30,8 @@ export default function Nav() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? "py-3 bg-[#030303]/70 backdrop-blur-xl border-b border-white/5"
-                    : "py-5 bg-transparent"
+                ? "py-3 bg-[#030303]/70 backdrop-blur-xl border-b border-white/5"
+                : "py-5 bg-transparent"
                 }`}
         >
             <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
@@ -46,13 +46,13 @@ export default function Nav() {
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1 backdrop-blur-md">
                     {NAV_LINKS.map((link) => (
-                        <a
+                        <Link
                             key={link.name}
                             href={link.href}
                             className="px-4 py-1.5 text-sm font-medium text-zinc-400 hover:text-white hover:bg-white/5 rounded-full transition-all"
                         >
                             {link.name}
-                        </a>
+                        </Link>
                     ))}
                 </nav>
 
@@ -96,14 +96,14 @@ export default function Nav() {
                     >
                         <div className="flex flex-col p-6 gap-4">
                             {NAV_LINKS.map((link) => (
-                                <a
+                                <Link
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setMobileMenuOpen(false)}
                                     className="text-lg font-medium text-zinc-400 hover:text-purple-400 transition-colors"
                                 >
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
                             <Button asChild className="w-full bg-purple-600 hover:bg-purple-700 text-white mt-4">
                                 <a href={WA_LINK} target="_blank" rel="noopener noreferrer">

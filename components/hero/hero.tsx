@@ -170,8 +170,8 @@ export default function Hero() {
                 >
                     {[
                         { title: "od 800 zł", desc: "za Landing Page", icon: <Sparkles className="w-4 h-4 text-purple-400" /> },
-                        { title: "3–5 dni", desc: "Czas realizacji", icon: <CheckCircle2 className="w-4 h-4 text-purple-400" /> },
-                        { title: "Lifetime", desc: "Wsparcie techniczne", icon: <CheckCircle2 className="w-4 h-4 text-purple-400" /> },
+                        { title: "3-5 dni", desc: "Czas realizacji", icon: <CheckCircle2 className="w-4 h-4 text-purple-400" /> },
+                        { title: "100%", desc: "Wsparcie techniczne", icon: <CheckCircle2 className="w-4 h-4 text-purple-400" /> },
                     ].map((stat, i) => (
                         <motion.div
                             key={i}
