@@ -3,6 +3,7 @@ import FAQ from "@/components/faq/faq";
 import Footer from "@/components/footer/footer";
 import Hero from "@/components/hero/hero";
 import Nav from "@/components/nav/nav";
+import Process from "@/components/process/process";
 import Services from "@/components/services/services";
 import WhyMe from "@/components/whyMe/whyMe";
 
@@ -19,6 +20,7 @@ export default function Home() {
       <Services />
       <WhyMe />
       <CTA />
+      <Process />
       <FAQ />
       <Footer />
 
