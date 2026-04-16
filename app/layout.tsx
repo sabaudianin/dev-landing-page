@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     url: siteUrl,
     siteName: "RafBob.dev",
-    title: "Strony internetowe dla firm | od 800 zł · 5 dni · Pełne SEO",
+    title: "Strony internetowe dla firm | od 500 zł · 5 dni · Pełne SEO",
     description:
       "Tworzę strony www, landing page i wizytówki dla polskich firm. Szybko, tanio, z pełnym SEO.",
     images: [
@@ -123,7 +123,7 @@ const jsonLd = {
         "@type": "Offer",
         name: "Wizytówka firmowa",
         description: "Wielostronicowa strona firmowa z pełnym SEO",
-        price: "1800",
+        price: "1500",
         priceCurrency: "PLN",
         availability: "https://schema.org/InStock",
       },
