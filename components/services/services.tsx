@@ -42,7 +42,7 @@ const services = [
 
 export default function Services() {
     return (
-        <section id="usługi" className="py-32 relative overflow-hidden bg-[#030303]">
+        <section id="usługi" className="relative overflow-hidden bg-[#030303]">
             {/* Subtelny blask w tle */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-purple-500/5 blur-[120px] pointer-events-none" />
 
