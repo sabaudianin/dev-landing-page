@@ -11,10 +11,10 @@ const services = [
         icon: <Monitor className="w-6 h-6" />,
         tag: "Najpopularniejsze",
         title: "Landing page",
-        desc: "Strona sprzedażowa zaprojektowana pod konkretny cel — pozyskanie klienta lub sprzedaż produktu. Szybka i skuteczna.",
-        price: "od 500 zł",
+        desc: "Strona sprzedażowa zaprojektowana pod konkretny cel - pozyskanie klienta lub sprzedaż produktu. Szybka i skuteczna.",
+        price: "od 600 zł",
         time: "3-5 dni roboczych",
-        features: ["1 strona / sekcje", "Formularz kontaktowy", "SEO on-page", "Mobile first", "Hosting setup"],
+        features: ["1 strona ", "Formularz kontaktowy", "SEO on-page", "Mobile first", "Hosting setup"],
         gradient: "from-blue-500/20 to-purple-500/20",
     },
     {
@@ -35,15 +35,15 @@ const services = [
         price: "od 1 500 zł",
         time: "7-14 dni roboczych",
         features: ["Panel CMS", "Blog / aktualności", "Animacje", "Nieograniczone treści", "Plus oba pakiety"],
-        gradient: "from-orange-500/20 to-amber-500/20",
+        gradient: "from-fuchsia-500/20 to-amber-300/30",
     },
 ];
 
 
 export default function Services() {
     return (
-        <section id="usługi" className="relative overflow-hidden bg-[#030303]">
-            {/* Subtelny blask w tle */}
+        <section id="usługi" className="relative overflow-hidden">
+
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-purple-500/5 blur-[120px] pointer-events-none" />
 
             <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -52,10 +52,10 @@ export default function Services() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="flex items-center gap-2 mb-4"
+                        className="flex items-center justify-center gap-2 mb-4"
                     >
                         <Zap className="w-4 h-4 text-purple-400 fill-purple-400" />
-                        <span className="font-bold text-[11px] tracking-[0.3em] uppercase text-purple-400">
+                        <span className="font-bold tracking-[0.3em] uppercase text-purple-400">
                             Oferta
                         </span>
                     </motion.div>
@@ -77,8 +77,7 @@ export default function Services() {
                         transition={{ delay: 0.1 }}
                         className="text-zinc-400 text-lg max-w-xl leading-relaxed"
                     >
-                        Przejrzyste zasady, nowoczesny stack technologiczny i skupienie na konwersji.
-                        Wybierz pakiet dopasowany do Twoich potrzeb.
+                        Wybierz ofertę dopasowaną do Twoich potrzeb.
                     </motion.p>
                 </div>
 
@@ -96,10 +95,10 @@ export default function Services() {
                             whileHover={{ y: -10 }}
                             className="group relative"
                         >
-                            {/* Card Background & Border Effect */}
+
                             <div className="relative h-full bg-zinc-900/40 backdrop-blur-sm border border-white/5 rounded-3xl p-8 transition-colors group-hover:border-purple-500/30 overflow-hidden">
 
-                                {/* Gradient Glow on Hover */}
+
                                 <div className={`absolute inset-0 bg-gradient-to-br ${s.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
                                 {s.tag && (

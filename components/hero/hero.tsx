@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { MessageCircle, Phone, ArrowDown, CheckCircle2, Sparkles } from "lucide-react";
+import { MessageCircle, Phone, ShieldCheck, CheckCircle2, HandCoins, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { itemVariants, containerVariants } from "@/lib/variants/variants";
@@ -55,7 +55,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex flex-col justify-center items-start overflow-hidden bg-[#030303] selection:bg-purple-500/30"
+            className="relative mb-16 flex flex-col justify-center items-start overflow-hidden"
         >
 
             <motion.div
@@ -75,7 +75,7 @@ export default function Hero() {
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="relative z-10 max-w-6xl mx-auto px-6 pt-20 w-full"
+                className="relative z-10 max-w-6xl mx-auto px-6 pt-24 md:pt-48 w-full"
             >
                 {/*Badge */}
                 <motion.div variants={itemVariants}>
@@ -98,7 +98,7 @@ export default function Hero() {
                         <span className="ml-1 inline-block w-[3px] h-[0.8em] bg-purple-500 animate-pulse" />
                     </span>
                     <span className="block text-4xl md:text-7xl lg:text-8xl font-bold text-white">
-                        gotowa w 5 dni.
+                        gotowa w 3 dni.
                     </span>
                 </motion.h1>
 
@@ -115,7 +115,7 @@ export default function Hero() {
 
                 <motion.div
                     variants={itemVariants}
-                    className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full max-w-lg mx-left"
+                    className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full max-w-lg mx-auto"
                 >
 
                     <motion.div
@@ -155,31 +155,44 @@ export default function Hero() {
 
                 <motion.div
                     variants={itemVariants}
-                    className="pt-20 border-t border-white/10 max-w-3xl"
+                    className="relative mt-10 group rounded-[3rem] p-px overflow-hidden bg-gradient-to-b from-white/20 to-transparent"
                 >
-                    <h4 className="mb-2 text-white font-semibold text-xl  text-center">Przejrzyste zasady</h4>
-                    <p className="mb-8 text-lg text-center text-zinc-400">Bez ukrytych kosztów i długich terminów.</p>
-                    <div className="pt-12 grid grid-cols-1 sm:grid-cols-3 gap-12">
+                    <div className="relative z-10 bg-[#080808] rounded-[3rem] p-12 md:p-20 text-center">
+                        <div className="absolute -top-24 -left-24 w-64 h-64 bg-purple-600/20 blur-[100px] pointer-events-none group-hover:bg-purple-600/30 transition-colors duration-700" />
+                        <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-indigo-600/10 blur-[100px] pointer-events-none group-hover:bg-indigo-600/20 transition-colors duration-700" />
+                        <div className="flex justify-center items-center mb-4 gap-4">
 
-                        {[
-                            { title: "od 800 zł", desc: "za Landing Page", icon: <Sparkles className="w-4 h-4 text-purple-400" /> },
-                            { title: "3-5 dni", desc: "Czas realizacji", icon: <CheckCircle2 className="w-4 h-4 text-purple-400" /> },
-                            { title: "100%", desc: "Wsparcie techniczne", icon: <CheckCircle2 className="w-4 h-4 text-purple-400" /> },
-                        ].map((stat, i) => (
-                            <motion.div
-                                key={i}
-                                whileHover={{ y: -5 }}
-                                className="flex flex-col gap-1"
-                            >
-                                <div className="flex items-center gap-2">
-                                    {stat.icon}
-                                    <span className="text-xl font-bold text-white tracking-tight leading-none">{stat.title}</span>
-                                </div>
-                                <p className="text-sm text-zinc-500 font-medium">{stat.desc}</p>
-                            </motion.div>
-                        ))}
+                            <div className="h-px w-8 bg-purple-500/50" />
+
+                            <ShieldCheck className="w-8 h-8 text-purple-400" />
+                            <h2 className="text-purple-400 font-bold text-xl uppercase tracking-[0.4em]">Przejrzyste zasady</h2>
+                            <div className="h-px w-8 bg-purple-500/50" />
+                        </div>
+
+                        <p className="mb-8 text-lg text-center text-zinc-400">Bez ukrytych kosztów i długich terminów.</p>
+                        <div className="pt-12 grid grid-cols-1 sm:grid-cols-3 gap-12">
+
+                            {[
+                                { title: "od 500 zł", desc: "za Landing Page", icon: <HandCoins className="w-6 h-6 text-purple-400" /> },
+                                { title: "3-5 dni", desc: "Czas realizacji", icon: <Calendar className="w-6 h-6 text-purple-400" /> },
+                                { title: "100%", desc: "Wsparcie techniczne", icon: <CheckCircle2 className="w-6 h-6 text-purple-400" /> },
+                            ].map((stat, i) => (
+                                <motion.div
+                                    key={i}
+                                    whileHover={{ y: -5 }}
+                                    className="flex flex-col gap-1"
+                                >
+                                    <div className="flex justify-center items-center gap-2">
+                                        {stat.icon}
+                                        <span className="text-xl font-bold text-white tracking-tight leading-none">{stat.title}</span>
+                                    </div>
+                                    <p className="text-sm text-zinc-500 font-medium">{stat.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
+
             </motion.div>
 
 
