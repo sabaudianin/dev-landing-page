@@ -6,6 +6,7 @@ import Nav from "@/components/nav/nav";
 import Process from "@/components/process/process";
 import Services from "@/components/services/services";
 import WhyMe from "@/components/whyMe/whyMe";
+import ContactForm from "@/components/contactForm/contactForm";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <CTA />
       <Process />
       <FAQ />
+      <ContactForm />
       <Footer />
 
     </main>

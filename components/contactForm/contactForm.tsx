@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Loader2, CheckCircle2, AlertCircle, MessageSquare } from "lucide-react";
+import { Send, Loader2, CheckCircle2, AlertCircle, MessageSquare, ChevronDown } from "lucide-react";
 
-export default function Contact() {
+export default function ContactForm() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -18,7 +18,7 @@ export default function Contact() {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("loading");
         setErrorMessage("");
@@ -45,11 +45,8 @@ export default function Contact() {
     };
 
     return (
-        <section id="kontakt" className="py-32 relative overflow-hidden bg-[#030303]">
-
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-500/10 blur-[120px] pointer-events-none" />
-
-            <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <section id="kontakt" className="relative overflow-hidden">
+            <div className="max-w-4xl mx-auto px-2 relative z-10">
                 <div className="text-center mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -58,7 +55,7 @@ export default function Contact() {
                         className="flex items-center justify-center gap-2 mb-4"
                     >
                         <MessageSquare className="w-4 h-4 text-purple-400" />
-                        <span className="text-purple-400 font-bold text-[10px] tracking-[0.4em] uppercase">Rozpocznij projekt</span>
+                        <span className="text-purple-400 font-bold text-xs tracking-[0.4em] uppercase">Rozpocznij projekt</span>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -74,7 +71,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-[#080808] border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden"
+                    className="bg-foreground border border-white/50 rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden"
                 >
                     <AnimatePresence mode="wait">
                         {status === "success" ? (
@@ -89,7 +86,7 @@ export default function Contact() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-2">Wiadomość wysłana!</h3>
                                 <p className="text-zinc-400 max-w-sm">
-                                    Dziękuję za kontakt. Odezwię się do Ciebie najszybciej jak to możliwe (zazwyczaj w ciągu kilku godzin).
+                                    Dziękuję za kontakt. Odezwię się do Ciebie najszybciej jak to możliwe.
                                 </p>
                                 <button
                                     onClick={() => setStatus("idle")}
@@ -157,15 +154,15 @@ export default function Contact() {
                                             onChange={handleChange}
                                             className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all appearance-none cursor-pointer"
                                         >
-                                            <option value="landing" className="bg-[#0f0f0f]">Landing Page</option>
-                                            <option value="business" className="bg-[#0f0f0f]">Wizytówka Firmowa</option>
-                                            <option value="pro" className="bg-[#0f0f0f]">Strona Pro / CMS</option>
-                                            <option value="other" className="bg-[#0f0f0f]">Inne / Wycena Indywidualna</option>
+                                            <option value="landing" className="bg-black">Landing Page</option>
+                                            <option value="business" className="bg-black">Wizytówka Firmowa</option>
+                                            <option value="pro" className="bg-black">Strona Pro</option>
+                                            <option value="other" className="bg-black">Inne / Wycena Indywidualna</option>
                                         </select>
 
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
-                                            ▼
-                                        </div>
+                                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+
+
                                     </div>
                                 </div>
 
