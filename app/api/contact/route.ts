@@ -55,15 +55,24 @@ export async function POST(req: NextRequest) {
     const serviceLabels: Record<string, string> = {
       landing: "Landing page",
       business: "Wizytówka firmowa",
-      pro: "Strona Pro / CMS",
+      pro: "Strona Pro",
       other: "Inne",
     };
 
     const cleanPhone = phone.replace(/\D/g, "");
 
+    const emailFrom = process.env.EMAIL_FROM;
+    if (!emailFrom) {
+      throw new Error(`[ENV ERROR] Missing EMAIL_FROM`);
+    }
+
+    const emailTo = process.env.EMAIL_TO;
+    if (!emailTo) {
+      throw new Error(`[ENV ERROR] Missing EMAIL_TO`);
+    }
     const { error } = await resend.emails.send({
-      from: "noreply@rafbob.dev",
-      to: "rafbobbob@gmail.com",
+      from: emailFrom,
+      to: emailTo,
       subject: `Nowe pytanie od ${name} — ${serviceLabels[service]}`,
       html: `
         <div style="font-family:sans-serif;max-width:560px;margin:0 auto;padding:32px;background:#f9f9f9;border-radius:12px;">
