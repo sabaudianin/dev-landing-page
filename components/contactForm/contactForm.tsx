@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Loader2, CheckCircle2, AlertCircle, MessageSquare, ChevronDown } from "lucide-react";
+import { contactSchema } from "@/lib/schemas/contactSchema";
+import type { ContactFormData } from "@/lib/schemas/contactSchema";
 
 export default function ContactForm() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -22,12 +24,20 @@ export default function ContactForm() {
         e.preventDefault();
         setStatus("loading");
         setErrorMessage("");
+        const rawData = Object.fromEntries(new FormData(e.currentTarget));
+        const result = contactSchema.safeParse(rawData);
+        if (!result.success) {
 
+            setErrorMessage(result.error.message);
+            setStatus("error");
+            return;
+        }
+        const validatedData: ContactFormData = result.data;
         try {
             const res = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(validatedData),
             });
 
             const data = await res.json();
