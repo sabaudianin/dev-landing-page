@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,28 +14,22 @@ const schema = z.object({
   website: z.string().optional(),
 });
 
-// In-memory rate limit,na Vercel resetuje się przy cold start
-const rateMap = new Map<string, number[]>();
-
-function rateLimit(ip: string) {
-  const now = Date.now();
-  const window = 60 * 60 * 1000;
-
-  // logi dla IP  te starsze niż godzina zapobiega wyciekom pamięci
-  const hits = (rateMap.get(ip) ?? []).filter((t) => now - t < window);
-
-  if (hits.length >= 5) return false;
-
-  rateMap.set(ip, [...hits, now]);
-  return true;
-}
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(3, "1 h"),
+  analytics: true, // (Opcjonalnie) pozwala sprawdzić w panelu Upstash wykresy zablokowanych IP
+});
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get("x-forwarded-for") ?? "unknown";
-    if (!rateLimit(ip)) {
+    // 1. Sprawdzanie Rate Limit przez Upstash Redis
+    const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
+    const { success } = await ratelimit.limit(`contact_form_${ip}`);
+
+    if (!success) {
+      console.log(`[Rate Limit Zablokował] IP: ${ip}`);
       return NextResponse.json(
-        { error: "Za dużo zapytań. Spróbuj za godzinę." },
+        { error: "Wysłałeś już zapytanie. Spróbuj ponownie za godzinę." },
         { status: 429 },
       );
     }
