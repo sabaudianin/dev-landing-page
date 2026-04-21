@@ -9,6 +9,7 @@ const schema = z.object({
   phone: z.string().min(9, "Numer telefonu jest za krótki").max(20),
   service: z.enum(["landing", "business", "pro", "other"]),
   message: z.string().min(5, "Wiadomość jest za krótka").max(2000),
+  website: z.string().optional(),
 });
 
 // In-memory rate limit,na Vercel resetuje się przy cold start
@@ -50,7 +51,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, phone, service, message } = parsed.data;
+    const { name, phone, service, message, website } = parsed.data;
+
+    if (website) {
+      console.log(`[Honeypot zablokował bota] IP: ${ip}, Wartość: ${website}`);
+      // Zwracamy fałszywy sukces, żeby bot myślał, że formularz przeszedł
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     const serviceLabels: Record<string, string> = {
       landing: "Landing page",

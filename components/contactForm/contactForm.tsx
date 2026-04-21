@@ -44,6 +44,8 @@ export default function ContactForm() {
         }
     };
 
+
+
     return (
         <section id="kontakt" className="relative overflow-hidden">
             <div className="max-w-4xl mx-auto px-2 relative z-10">
@@ -104,6 +106,16 @@ export default function ContactForm() {
                                 onSubmit={handleSubmit}
                                 className="flex flex-col gap-6"
                             >
+                                {/* Honeypot  */}
+                                <input
+                                    type="text"
+                                    name="website"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    aria-hidden="true"
+                                    className="opacity-0 absolute -z-10 w-0 h-0 overflow-hidden"
+                                />
+
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                                     <div className="flex flex-col gap-2">
@@ -161,8 +173,6 @@ export default function ContactForm() {
                                         </select>
 
                                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
-
-
                                     </div>
                                 </div>
 
