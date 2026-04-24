@@ -32,4 +32,19 @@ Profesjonalny, bezpieczny i wysoko wydajny system obsługi zapytań kontaktowych
 
 ### Walidacja Danych (Zod)
 
-Zastosowałem podejście _Single Source of Truth_. Schemat zdefiniowany w `lib/contact-schema.ts` wymusza spójność typów w całym projekcie.
+Zastosowałem podejście _Single Source of Truth_. Schemat zdefiniowany wymusza spójność typów w całym projekcie.
+
+##Bezpieczeństwo (Rate Limit)
+Zamiast zawodnego zapisu w pamięci RAM (in-memory), który resetuje się przy każdym restarcie funkcji serverless na Vercel, użyłem trwałej bazy Redis. Pozwala to na precyzyjne ograniczanie liczby zapytań na godzinę dla konkretnego adresu IP.
+
+### Konfiguracja
+
+Aby uruchomić projekt lokalnie, należy dodać następujące zmienne do pliku .env.local:
+
+RESEND*API_KEY=re*...
+UPSTASH_REDIS_REST_URL=https://...
+UPSTASH_REDIS_REST_TOKEN=...
+
+## Podsumowanie
+
+Projekt ten rozwiązuje typowe problemy formularzy kontaktowych: zalew spamu, brak walidacji po stronie serwera oraz trudności w utrzymaniu spójności typów. Dzięki zastosowaniu nowoczesnych narzędzi, system jest w pełni skalowalny i gotowy do wdrożenia produkcyjnego w środowisku Serverless.
